@@ -1,0 +1,95 @@
+#calculator {
+	width: 400px;
+	height: 500px;
+	background-color: rgb(73, 112, 129);
+	margin: auto;
+	margin-top: 2%;
+	border-radius: 8px;
+	box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.479);
+	border-right: 5px solid rgb(87, 137, 158);
+	border-bottom: 10px solid rgb(61, 95, 110);
+
+	display: grid;
+	grid-template-columns: repeat(6, 1fr);
+	grid-template-rows: repeat(4, 1fr);
+}
+/*DIFFERENT PARTS*****************************/
+#part0 {
+	grid-column: 1/7;
+}
+#part1 {
+	display: grid;
+	grid-gap: 3%;
+	justify-content: center;
+	grid-template-columns: repeat(3, 25%);
+	grid-column: 1/5;
+	grid-row: 2/5;
+}
+#part2 {
+	display: grid;
+	grid-row: repeat(6, 1fr);
+	grid-gap: 1%;
+	grid-column: 5/7;
+	grid-row: 2/5;
+}
+/*PART 0**************************************/
+#screen {
+	width: 85%;
+	height: 80%;
+	margin: auto;
+	margin-top: 3%;
+	background-color: rgb(134, 134, 62);
+}
+#screen input {
+	width: 90%;
+	height: 100%;
+	margin-left: 7%;
+	text-align: end;
+	font-size: 7vw;
+	background-color: transparent;
+	border: none;
+	color: rgba(0, 0, 0, 0.384);
+}
+/*PART 1*************************************/
+.numbers {
+	width: 100%;
+	height: 80%;
+	background-color: rgb(55, 84, 97);
+	margin: 8%;
+	border-radius: 4%;
+}
+#number10,
+#number12,
+#number10 h1,
+#number12 h1 {
+	background-color: transparent !important;
+	color: transparent !important;
+}
+.numbers h1 {
+	text-align: center;
+	padding-top: 20%;
+	color: white;
+	font-weight: bold;
+	font-size: 6vw;
+}
+.numbers:hover {
+	background-color: rgb(64, 98, 114);
+}
+/*Part 2 ******************************************/
+.operators {
+	width: 75%;
+	height: 75%;
+	background-color: rgb(204, 31, 31);
+	margin-top: 5%;
+	border-radius: 4px;
+}
+.operators h1 {
+	text-align: center;
+	padding-top: 8%;
+	color: white;
+	font-weight: bold;
+	font-size: 3vw;
+}
+.operators:hover {
+	background-color: rgb(235, 33, 33);
+}
