@@ -16,6 +16,8 @@ function divide(a, b) {
 }
 //combines functions: add, subtract, multiply, divide
 function operate(operator, num1, num2) {
+	num1 = Number(num1);
+	num2 = Number(num2);
 	switch (operator) {
 		case '+':
 			return add(num1, num2);
@@ -106,6 +108,8 @@ function activateOperators() {
 		x.addEventListener('click', function() {
 			//console.log(x.firstElementChild.innerText);
 			let value = x.firstElementChild.innerText;
+			//swap x out for *
+			if (value == 'x') value = '*';
 			switch (value) {
 				case 'cl':
 					clearScreen();
@@ -113,30 +117,152 @@ function activateOperators() {
 					numStorage = [];
 					break;
 				case '+':
-					numStorage.push(tempStorage);
-					numStorage.push(value);
-					clearScreen();
-					tempStorage = '';
+					if (numStorage.length == 0) {
+						//if num is empty
+						if (tempStorage == '') {
+							//if both are empty do nothing
+						} else {
+							//if only numStorage is empty
+							//push temp to num w/ operator
+							numStorage.push(tempStorage);
+							numStorage.push(value);
+							clearScreen();
+							tempStorage = '';
+						}
+					} else {
+						//if num not empty
+						if (tempStorage == '') {
+							//if temp is empty
+							//replace previous operator
+							numStorage[1] = value;
+						} else {
+							//if num & temp is not empty
+							numStorage[0] = operate(numStorage[1], numStorage[0], tempStorage);
+							numStorage[1] = value;
+							clearScreen();
+							tempStorage = '';
+							populateScreen(numStorage[0]);
+							tempStorage = '';
+						}
+					}
 					break;
 				case '-':
-					numStorage.push(tempStorage);
-					numStorage.push(value);
-					clearScreen();
-					tempStorage = '';
+					if (numStorage.length == 0) {
+						//if num is empty
+						if (tempStorage == '') {
+							//if both are empty do nothing
+						} else {
+							//if only numStorage is empty
+							//push temp to num w/ operator
+							numStorage.push(tempStorage);
+							numStorage.push(value);
+							clearScreen();
+							tempStorage = '';
+						}
+					} else {
+						//if num not empty
+						if (tempStorage == '') {
+							//if temp is empty
+							//replace previous operator
+							numStorage[1] = value;
+						} else {
+							//if num & temp is not empty
+							numStorage[0] = operate(numStorage[1], numStorage[0], tempStorage);
+							numStorage[1] = value;
+							clearScreen();
+							tempStorage = '';
+							populateScreen(numStorage[0]);
+							tempStorage = '';
+						}
+					}
 					break;
-				case 'x':
-					numStorage.push(tempStorage);
-					numStorage.push(value);
-					clearScreen();
-					tempStorage = '';
+				case '*':
+					if (numStorage.length == 0) {
+						//if num is empty
+						if (tempStorage == '') {
+							//if both are empty do nothing
+						} else {
+							//if only numStorage is empty
+							//push temp to num w/ operator
+							numStorage.push(tempStorage);
+							numStorage.push('*');
+							clearScreen();
+							tempStorage = '';
+						}
+					} else {
+						//if num not empty
+						if (tempStorage == '') {
+							//if temp is empty
+							//replace previous operator
+							numStorage[1] = value;
+						} else {
+							//if num & temp is not empty
+							numStorage[0] = operate(numStorage[1], numStorage[0], tempStorage);
+							numStorage[1] = value;
+							clearScreen();
+							tempStorage = '';
+							populateScreen(numStorage[0]);
+							tempStorage = '';
+						}
+					}
 					break;
 				case '/':
-					numStorage.push(tempStorage);
-					numStorage.push(value);
-					clearScreen();
-					tempStorage = '';
+					if (numStorage.length == 0) {
+						//if num is empty
+						if (tempStorage == '') {
+							//if both are empty do nothing
+						} else {
+							//if only numStorage is empty
+							//push temp to num w/ operator
+							numStorage.push(tempStorage);
+							numStorage.push(value);
+							clearScreen();
+							tempStorage = '';
+						}
+					} else {
+						//if num not empty
+						if (tempStorage == '') {
+							//if temp is empty
+							//replace previous operator
+							numStorage[1] = value;
+						} else {
+							//if num & temp is not empty
+							numStorage[0] = operate(numStorage[1], numStorage[0], tempStorage);
+							numStorage[1] = value;
+							clearScreen();
+							tempStorage = '';
+							populateScreen(numStorage[0]);
+							tempStorage = '';
+						}
+					}
 					break;
 				case '=':
+					if (numStorage.length == 0) {
+						//if num is empty
+						if (tempStorage == '') {
+							//if both are empty do nothing
+						} else {
+							//if only numStorage is empty
+							//push temp to num w/ operator
+							//for equals, leave temp/screen full
+						}
+					} else {
+						//if num not empty
+						if (tempStorage == '') {
+							//if temp is empty
+							//display stored num, clear numStorage
+							populateScreen(numStorage[0]);
+							numStorage = [];
+						} else {
+							//if num & temp is not empty
+							numStorage[0] = operate(numStorage[1], numStorage[0], tempStorage);
+							//numStorage[1] = value;
+							clearScreen();
+							tempStorage = '';
+							populateScreen(numStorage[0]);
+							tempStorage = '';
+						}
+					}
 					break;
 				default:
 			}
